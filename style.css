@@ -11,6 +11,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body{
+    overflow-x: hidden;
+}
+
 a,
 a:link,
 a:visited{
@@ -89,11 +93,13 @@ a{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    text-align: center;
+    width: min(90vw, 600px);
 }
 
 h1{
@@ -258,6 +264,11 @@ h4{
     display: flex;
 }
 
+.youtube iframe{
+    width: 100%;
+    max-width: 560px;
+}
+
 .youtube-info{
     align-items: center;
     display: flex;
@@ -376,6 +387,14 @@ h4{
 }
 
 @media (max-width: 800px) {
+    .header{
+        background-attachment: scroll;
+    }
+
+    .header-text{
+        width: 92vw;
+    }
+
     .header-menu ul{
         display: flex;
         align-items: flex-end;
@@ -387,6 +406,7 @@ h4{
         width: 100%;
         background-color: cornsilk;
         transition: max-height 0.5s;
+        overflow: hidden;
     }
 
     .header-menu ul li{
@@ -401,7 +421,45 @@ h4{
         display: block;
     }
 
+    .about-content{
+        flex-direction: column;
+    }
+
+    .about-img,
+    .about-text{
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .youtube{
+        width: 100%;
+    }
+
+    .youtube iframe{
+        max-width: 100%;
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
+
+    .drivers-item{
+        width: 50%;
+    }
+
     .contact-items{
         flex: 1 1 calc(100% - 40px);
+    }
+}
+
+@media (max-width: 480px) {
+    .drivers-item{
+        width: 100%;
+    }
+
+    .first-letter{
+        font-size: 7rem;
+    }
+
+    h3{
+        font-size: 18px;
     }
 }
