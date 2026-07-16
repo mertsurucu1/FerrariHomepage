@@ -46,6 +46,7 @@ p{
 }
 
 .header{
+    position: relative;
     background-image: url(images/Ferrari.jpg);
     background-position: center;
     background-size: cover;
@@ -55,6 +56,8 @@ p{
 }
 
 .header-navbar{
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -68,11 +71,53 @@ nav ul li a:hover{
 }
 
 .header-logo{
-    font-size: 27px;
-    letter-spacing: 2px;
-    border-bottom: 2px solid black;
-    border-radius: 21px;
-    padding-left: 3px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.brand-logo{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 2px 0 0;
+    color: crimson;
+    line-height: 1;
+    text-transform: uppercase;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    transform: translateX(48px);
+    animation: brand-slide-in 900ms ease-out 120ms forwards;
+}
+
+@keyframes brand-slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(48px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.brand-logo-main{
+    display: inline-block;
+    padding: 0 0 2px;
+    border-bottom: 2px solid rgba(220, 20, 60, 0.95);
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2.6px;
+    color: rgba(220, 20, 60, 0.98);
+}
+
+.brand-logo-bottom{
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 3.4px;
+    color: rgba(220, 20, 60, 0.88);
+    margin-top: 4px;
 }
 
 ul{
@@ -91,7 +136,7 @@ a{
 
 .header-text{
     position: absolute;
-    top: 50%;
+    top: 67%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -255,18 +300,74 @@ h4{
     top: 0;
 }
 
-.youtube{
-    width: 50%;
-    border-bottom: 100px;
+.youtube-grid{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
     margin-bottom: 40px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
 }
 
-.youtube iframe{
+.youtube-card{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #111;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+    min-height: 0;
+}
+
+.youtube-card img{
+    display: block;
     width: 100%;
-    max-width: 560px;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.youtube-card-overlay{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: white;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.42));
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.youtube-play{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(220, 20, 60, 0.9);
+    position: relative;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+}
+
+.youtube-play::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 52%;
+    transform: translate(-50%, -50%);
+    border-style: solid;
+    border-width: 10px 0 10px 16px;
+    border-color: transparent transparent transparent white;
+}
+
+.youtube-card:hover img{
+    transform: scale(1.05);
+}
+
+.youtube-card:hover .youtube-card-overlay{
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.52));
 }
 
 .youtube-info{
@@ -329,31 +430,66 @@ h4{
     margin-bottom: 20px;
 }
 
+.contact-icon{
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(220, 20, 60, 0.96), rgba(139, 0, 0, 0.92));
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 18px rgba(220, 20, 60, 0.18);
+}
+
+.contact-icon svg{
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
 .contact-items p{
     font-size: 16px;
     color: #333;
 }
 
-.contact-content.social-icons{
+.contact-social{
     width: 100%;
     text-align: center;
     margin-top: 30px;
 }
 
-.social-icons {
+.social-buttons {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
-.social-icons img{
-    width: 40px;
-    height: 40px;
-    transition: transform 0.3s;
+.social-button{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: white;
+    color: crimson;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
 }
 
-.social-icons img:hover{
-    transform: scale(1.1);
+.social-button svg{
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+.social-button:hover{
+    transform: translateY(-4px);
+    background-color: crimson;
+    color: white;
 }
 
 .footer{
@@ -391,8 +527,13 @@ h4{
         background-attachment: scroll;
     }
 
+    .header::before{
+        background: linear-gradient(180deg, rgba(139, 0, 0, 0.66), rgba(220, 20, 60, 0.22) 55%, rgba(0, 0, 0, 0.32));
+    }
+
     .header-text{
         width: 92vw;
+        top: 70%;
     }
 
     .header-menu ul{
@@ -431,14 +572,8 @@ h4{
         margin-bottom: 40px;
     }
 
-    .youtube{
-        width: 100%;
-    }
-
-    .youtube iframe{
-        max-width: 100%;
-        aspect-ratio: 16 / 9;
-        height: auto;
+    .youtube-grid{
+        grid-template-columns: 1fr;
     }
 
     .drivers-item{
@@ -451,6 +586,18 @@ h4{
 }
 
 @media (max-width: 480px) {
+    .brand-logo{
+        padding: 10px 14px 8px;
+    }
+
+    .brand-logo-main{
+        font-size: 20px;
+    }
+
+    .brand-logo-bottom{
+        font-size: 7px;
+    }
+
     .drivers-item{
         width: 100%;
     }
